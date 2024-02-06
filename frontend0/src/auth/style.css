@@ -1,0 +1,250 @@
+
+/*start login page*/
+
+.login{
+    margin: 130px 0px 110px;
+}
+.container{
+    width: 75%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 15px;
+    height: 100%;
+}
+.login .content{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: whitesmoke;
+}
+.login .img{
+    width: 45%;
+}
+.login .img img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+@media(max-width:767px){
+    .login .img{
+        display: none;
+    }
+    .container{
+        width: 95%;  
+    }
+    .login .content{
+        display: flex;
+        justify-content: center;
+        border-radius: 15px;
+        position: relative;
+        width: 87%;
+        height: 75%;  
+        margin: auto;
+     }
+     .login .progress{
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 40px;
+}
+     
+}
+.login .box{
+    width: 65%; 
+    background-color: whitesmoke;
+   /* background-repeat: repeat  space / round */;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+.login .form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    color: #000;
+    width: fit-content;
+    /*border: 1px solid #ddd;*/
+    border-radius: 10px;
+    /* backdrop-filter: blur(1px); */
+    padding-block: 20px;
+}
+.login #form2{
+    display: none;
+}
+.login .form .head_form{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+.login .form .head_form p{
+    margin-block: 5px;
+    font-size: .9rem;
+}
+.login .form label{
+    text-align: left;
+    width: 100%;
+}
+.login .form input:not(input[type="checkbox"]){
+    all: unset;
+    background-color:var(--primaryColor1);
+    padding: 5px 10px;
+    height: 24px;
+    border-radius: 5px;
+    margin:0 0 10px;
+}
+.login .form input{
+    accent-color: white;
+    color: white ! important ;
+    position: relative;
+    border: 2px solid transparent ;
+}
+
+.login .form input:focus:not(:valid){
+  border: 2px solid orangered;
+}
+.login .form #pwd::after{
+    content: "\f06e";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: red !important ;
+    position: absolute;
+    z-index: 10000;
+    top: -30px;
+    left: 100px;
+    
+}
+.login .form input::placeholder{
+    color:white;
+    font-size: .9rem;
+}
+
+ 
+.login .log{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.login .log p{
+    color: var(--primaryColor2);
+    font-size: .8rem;
+    text-align: center;
+    margin: 10px 0;
+}
+.login .log p:last-of-type{
+    all: unset;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: 1px solid #777;
+    color: var(--primaryColor1);
+    border-radius: 5px;
+    padding: 15px  0;
+    font-size: .9rem;
+    width: 100%;
+    height: 22px;
+    display:flex ;
+    justify-content: center;
+    align-items: center;
+}
+.login .log p span{
+    cursor: pointer;
+    color: var(--mainColor);
+}
+.login .log .or{
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.login .log .or::before{
+    position: absolute;
+    content: "";
+    width: 100%;
+    border: 1px solid #000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.login .log .or::after{
+    position: absolute;
+    content: "OR";
+    height: 100%;
+    width: 20%;
+    background-color: white;
+    border-radius:10px;
+    left: 50%;
+    transform: translateX(-50%);
+    backdrop-filter: blur(1px);
+}
+.login .form .log p i{
+    background:linear-gradient(-20deg, #4285f4, #34a853, #fbbc05, #ea4335);
+    background-size: 100%;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color:transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+.login form .btns{
+    display: flex;
+    justify-content: space-between;
+}
+.login .form button{
+    padding:15px;
+    border-radius: 5px;
+    outline: none;
+    width: 80%;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #227ab4;
+    border: 1px solid #227ab4;
+    color: #fff;
+    margin: 20px 0 5px;}
+
+.login .form button:first-child{
+    width: 12%;
+}
+.login form button:hover{
+    background-color: var(--primaryColor1);
+    border: 1px solid var(--primaryColor1);
+    color: white;
+}
+.login form button:disabled {
+  cursor: not-allowed;
+}
+.login .form button i{
+    font-size: .9rem;
+    color: white;
+}
+
+.login .form button div{
+    color: white;
+}
+
+/*.......*/
+
+.login #form2 .div{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.login #form2 .div p{
+    color: var(--primaryColor2);
+}
+.login #form2 .div div{
+    color: var(--mainColor);
+    font-size: .8rem;
+}
+
+

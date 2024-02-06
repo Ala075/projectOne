@@ -1,0 +1,55 @@
+.profil{
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    color: #000;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.profil .profile__header{
+    width: 100%;
+    padding: 1rem 2rem;
+    color: #fff;
+    background-color: #242424;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+.profil .profile__content{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 1rem;
+    border:1px solid #242424;
+}
+.profil .profile__content .avatar{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin-right: 2rem;
+    border: 1px solid #242424;
+    position: relative;
+}
+.profil .profile__content .avatar .avatar__edit{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #242424;
+    padding: 2px;
+    cursor: pointer;
+}
+.profil .profile__content .avatar img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}

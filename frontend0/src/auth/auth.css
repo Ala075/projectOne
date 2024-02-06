@@ -1,0 +1,228 @@
+.login{
+    width: 100vw;
+    height: 100vh;
+    background-color: grey;
+    overflow: hidden;
+  }
+  .container{
+    width: 70%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+  .login .content{
+    width: 100%;
+    height: 70%;
+    margin: auto;
+    display: flex;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  .login .img{
+    width: 45%;
+    height: 100%;
+  }
+  .login .img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  
+  }
+  @media(max-width:767px){
+    .login .img{
+        display: none;
+    }
+    .container{
+        width: 95%;  
+    }
+    .login .content{
+        display: flex;
+        justify-content: center;
+        border-radius: 15px;
+        position: relative;
+        width: 87%;
+        height: 75%;  
+        margin: auto;
+     }
+  }
+  .login .box{
+    width: 55%;
+    height: 100%;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+  }
+  .login form{
+    width: 42%;
+    padding: 20px 0;
+    margin: auto;
+  }
+  .login form .head_form{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin-bottom: 8px;
+  }
+  .login form .head_form p{
+    font-size: medium;
+    color: gray;
+    text-align: center;
+    margin: 0;
+  }
+  .login form .head_form span{
+    font-size: large;
+    color: var(--mainColor);
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .login form label{
+    color:gray;
+    display: block;
+  }
+  .login form input{
+    outline: none;
+    border: 1px solid gray;
+    padding:10px;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: white;
+    color: #898989;
+    user-select: none;
+  }
+  .login form .inputError{
+    color: orangered;
+    font-size: .7rem;
+    font-weight: bold;
+    visibility: hidden;
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  .login form input:invalid[focused="true"]{
+    border: 1px solid orangered;
+  }
+  .login form input:valid[focused="true"]{
+    border: 1px solid green;
+  }
+  .login form  input:invalid[focused="true"]  + .inputError{
+    visibility: visible;
+  }
+  .login .log{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .login .log p{
+    color:#898989;
+    font-size: .8rem;
+    text-align: center;
+    margin: 10px 0;
+  }
+  .login .log p:last-of-type{
+    all: unset;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: 1px solid #777;
+    color: #898989;
+    border-radius: 5px;
+    padding: 15px  0;
+    font-size: .9rem;
+    width: 100%;
+    height: 22px;
+    display:flex ;
+    justify-content: center;
+    align-items: center;
+  }
+  .login .log p span{
+    cursor: pointer;
+    color: var(--mainColor);
+  }
+  .login .log .or{
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  
+  .login .log .or::before{
+    position: absolute;
+    content: "";
+    width: 100%;
+    border: 1px solid #000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  .login .log .or::after{
+    position: absolute;
+    content: "OR";
+    height: 100%;
+    width: 20%;
+    background-color: white;
+    border-radius:10px;
+    left: 50%;
+    transform: translateX(-50%);
+    backdrop-filter: blur(1px);
+    color: #000;
+  }
+  .login .form .log p i{
+    background:linear-gradient(-20deg, #4285f4, #34a853, #fbbc05, #ea4335);
+    background-size: 100%;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color:transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  .login form .btns{
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+  }
+  .login .form button{
+    padding:15px;
+    border-radius: 5px;
+    outline: none;
+    width: 80%;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #227ab4;
+    border: none;
+    color: #fff;
+    margin: 10px 0;
+  }
+  
+  .login .form button:first-child{
+    width: 12%;
+  }
+  .login form button:hover{
+    background-color: #898989;
+    color: white;
+  }
+  .login form button:disabled {
+   cursor: not-allowed;
+  }
+  .login .form button i{
+    font-size: .9rem;
+    color: white;
+  }
+  
+  .login .form button div{
+    color: white;
+  }
+  .login form .log p{
+    color: gray;
+    margin: 0 0 5px;
+  }
+  .login form .log span{
+    color: var(--mainColor);
+    font-size: .8rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
