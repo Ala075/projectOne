@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import UseMultiStepForm from "./useMultiStepForm.jsx";
-import Progress from "../components/progress/Progress.jsx"
+import Progress from "../components/progress/Progress.jsx";
 import img from "../assets/arbre.jpg";
 import UseOTP from "./useOTP.jsx";
 import StepOne from "./stepOne.jsx";
@@ -19,8 +19,6 @@ const SignUp = () => {
   const cookie = Cookie();
   const circles = [1, 2, 3];
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
@@ -41,12 +39,11 @@ const SignUp = () => {
     otp: generatedOTP,
     generateOTP,
     isLoading: otpLoading,
-    otpError,
   } = UseOTP();
 
   useEffect(() => {
     generateOTP();
-  }, []);
+  });
 
   const showError = (message) => {
     setInputError((prevError) => ({ ...prevError, message }));
@@ -80,9 +77,7 @@ const SignUp = () => {
         navigate("/", { replace: true });
       }
     } catch (error) {
-      showError(
-        error.res?.data?.message || "An unexpected error occurred."
-      );
+      showError(error.res?.data.message || "An unexpected error occurred.");
     } finally {
       setIsLoading(false);
     }
@@ -98,6 +93,7 @@ const SignUp = () => {
   const { currentStep, step, next, back, isFirstStep, isLastStep } =
     UseMultiStepForm([
       <StepOne
+        key={user._id}
         user={user}
         error={inputError}
         email={email}
@@ -105,6 +101,7 @@ const SignUp = () => {
         setEmail={setEmail}
       />,
       <StepTwo
+        key={user._id}
         error={inputError}
         pwd={pwd}
         repeatPwd={repeatPwd}
@@ -112,6 +109,7 @@ const SignUp = () => {
         setRepeatPwd={setRepeatPwd}
       />,
       <StepThree
+        key={user._id}
         otp={otp}
         setOtp={setOtp}
         valideOTP={generatedOTP}

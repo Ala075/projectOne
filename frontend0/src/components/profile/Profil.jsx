@@ -8,6 +8,7 @@ import "./profile.css";
 import { PencilLine } from "lucide-react";
 import defaultAvatar from "../../assets/react.svg";
 import { useNavigate } from "react-router-dom";
+import { IMAGE_URL } from "../../api/Config";
 
 const Profile = () => {
   const [user, setUser] = useState({});
@@ -23,11 +24,11 @@ const Profile = () => {
         const res = await Axios.get(`/Users/${userId}`);
         setUser(res.data.user);
         if (res.data.user.image) {
-          setProfileImage(imageToUrl(res.data.user.image));
+          setProfileImage(IMAGE_URL + res.data.user.image);
         }
       } catch (error) {
         showError(error.response?.data?.message || "An error occurred");
-        console.log(error.response)
+        console.log(error.response);
       }
     };
 
@@ -57,8 +58,8 @@ const Profile = () => {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
 
-      const fileUrl = imageToUrl(file);
-      setProfileImage(fileUrl);
+    const fileUrl = imageToUrl(file);
+    setProfileImage(fileUrl);
 
     const formData = new FormData();
     formData.append("image", file);

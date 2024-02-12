@@ -1,8 +1,10 @@
-import React from "react";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
-import Logout from "../auth/Logout.jsx";
 import { Link } from "react-router-dom";
+import ProductList from "../components/products/ProductList.jsx";
+import "../components/products/products.css";
+import "../components/categories/categories.css";
+import CategoryList from "../components/categories/CategoryList.jsx";
 
 const Landing = () => {
   return (
@@ -20,8 +22,9 @@ const Landing = () => {
                 voluptates? Quisquam, quas voluptates?
               </p>
               <button>
-
-                <Link to="/Dashboard"><span>Let's Go</span></Link>
+                <Link to="/Dashboard">
+                  <span>Let s Go</span>
+                </Link>
               </button>
             </div>
             <div className="img">
@@ -30,6 +33,27 @@ const Landing = () => {
           </div>
         </div>
       </div>
+
+      <div className="categories" style={{borderBottom:"1px solid white"}}>
+        <div
+          className="categories__container"
+          style={{ backgroundColor: "#898989" }}
+        >
+          <div className="categories__container__title">
+            <h1>Categories</h1>
+          </div>
+          <CategoryList />
+        </div>
+      </div>
+
+      <div
+        className="products__container"
+        style={{ backgroundColor: "#898989", padding: "15px" }}
+      >
+        <h2 className="products__container__title">Products</h2>
+        <ProductList />
+      </div>
+
       <Footer />
     </>
   );

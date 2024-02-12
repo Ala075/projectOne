@@ -6,12 +6,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./products.css";
 import { PencilRuler, Trash2 } from "lucide-react";
-import ErrorPage from "../../pages/ErrorPage";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
   const navigate = useNavigate();
 
   const showError = (message) => {
@@ -27,7 +25,6 @@ const Products = () => {
 
         setProducts(res.data.products);
       } catch (error) {
-        setError(true);
         showError(error.response.data.message);
       } finally {
         setLoading(false);

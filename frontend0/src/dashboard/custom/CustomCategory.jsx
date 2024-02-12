@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import InputsForm from "../../components/InputsForm";
-import axios from "axios";
-import { BASE_URL } from "../../api/Config";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../../src/auth/auth.css";
@@ -42,25 +40,19 @@ const CustomCategory = ({ category }) => {
     form.append("description", description);
     form.append("image", image);
 
+    console.log(form)
+
     try {
       if (!category) {
         console.log("form", form);
-        const res = await Axios.post("/Categories", {
-          name,
-          description,
-          image,
-        });
+        const res = await Axios.post("/Categories", form);
 
         if (res.status === 201) {
           toast.success("Category added successfully !");
           navigate("/dashboard/Categories");
         }
       } else {
-        const res = await Axios.patch(`/Categories/${category._id}`, {
-          name,
-          description,
-          image,
-        });
+        const res = await Axios.patch(`/Categories/${category._id}`, form);
 
         if (res.status === 200) {
           toast.success("Category updated successfully !");

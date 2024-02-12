@@ -13,7 +13,7 @@ const CustomProduct = ({ product }) => {
   const [reference, setReference] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
+  const [images, setImages] = useState("");
   const [category, setCategory] = useState("Select a category");
   const [categories, setCategories] = useState([]);
   const [price, setPrice] = useState(0);
@@ -49,18 +49,13 @@ const CustomProduct = ({ product }) => {
     form.append("description", description);
     form.append("price", price);
     form.append("category", category);
-    form.append("image", image);
+    for(let i = 0; i < images.length; i++) {
+      form.append("images", images[i]);
+    }
 
     try {
       if (!product) {
-        const res = await Axios.post("/Products", {
-          reference,
-          name,
-          description,
-          image,
-          price,
-          category,
-        });
+        const res = await Axios.post("/Products", form);
 
         if (res.status === 201) {
           toast.success("Product added successfully !");
@@ -71,7 +66,7 @@ const CustomProduct = ({ product }) => {
           reference,
           name,
           description,
-          image,
+          images,
           price,
           category,
         });
@@ -170,7 +165,7 @@ const CustomProduct = ({ product }) => {
               setChange={setPrice}
             />
             <label htmlFor="image">Image</label>
-            <input type="file" onChange={(e) => setImage(e.target.files[0])} />
+            <input type="file" multiple onChange={(e) => setImages(e.target.files)} />
           </div>
 
           <div className="log">

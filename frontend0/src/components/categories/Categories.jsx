@@ -25,9 +25,10 @@ const Categories = () => {
         const res = await Axios.get("/Categories");
 
         setCategories(res.data.categories);
+        console.log(res.data.categories)
       } catch (error) {
         setError(true);
-        showError(error.response.data.message);
+        showError(error.response?.data.message);
       } finally {
         setLoading(false);
       }
@@ -45,6 +46,7 @@ const Categories = () => {
   const deleteCategory = async (id) => {
     try {
       await Axios.delete(`/Categories/${id}`);
+      
       const newCategories = categories.filter(
         (category) => category._id !== id
       );

@@ -6,6 +6,7 @@ const Footer = () => {
   return (
     <div className="footer" style={{ color: "black" }}>
       <div className="content">
+        <h2>LOGO</h2>
         <div className="links">
           <div className="link">
             <h2>Company</h2>
@@ -21,29 +22,25 @@ const Footer = () => {
             <Link to="#">Terms of Use</Link>
             <Link to="#">Privacy Policy</Link>
           </div>
-          <div className="link">
-            <h2>Social</h2>
-            <div className="">
-              <Link to="https://facebook.com/">
-                <Facebook />
-              </Link>
-              <Link to="https://instagram.com/">
-                <Instagram />
-              </Link>
-              <Link to="https://twitter.com/">
-                <Twitter />
-              </Link>
-              <Link to="https://github.com/">
-                <Github />
-              </Link>
-              <div className="input">
-                <input type="text" />
-                <button>Subscribe</button>
-              </div>
-            </div>
-          </div>
         </div>
+      </div>
+
+      <div className="footer__icons">
         <p>{new Date().getFullYear()} &copy; Copyright | All right reserved</p>
+        <div className="icons">
+          <Link to="https://facebook.com/">
+            <Facebook />
+          </Link>
+          <Link to="https://instagram.com/">
+            <Instagram />
+          </Link>
+          <Link to="https://twitter.com/">
+            <Twitter />
+          </Link>
+          <Link to="https://github.com/">
+            <Github />
+          </Link>
+        </div>
       </div>
     </div>
   );

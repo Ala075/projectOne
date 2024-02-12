@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Axios } from "../../api/Axios";
 import "./custom.css";
 import "../../../src/auth/auth.css";
+import PropTypes from "prop-types";
 
 const CustomOrder = ({ order }) => {
   const [reference, setReference] = useState("");
@@ -13,9 +14,13 @@ const CustomOrder = ({ order }) => {
   const [users, setUsers] = useState([]);
   const [products, setProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const [total, setTotal] = useState(0);
-  const [error, setError] = useState({});
+  const [total] = useState(0);
+  const [error] = useState({});
   const navigate = useNavigate();
+
+  CustomOrder.propTypes = {
+    order: PropTypes.object,
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -42,7 +47,7 @@ const CustomOrder = ({ order }) => {
       setSelectedProducts(
         order.products.map((p) => ({
           product: p.product,
-          quantity: p.quantity 
+          quantity: p.quantity,
         }))
       );
     }
@@ -63,7 +68,6 @@ const CustomOrder = ({ order }) => {
       if (order) {
         res = await Axios.patch(`/Orders/${order._id}`, payload);
       } else {
-        console.log("payload", payload);
         res = await Axios.post("/Orders", payload);
       }
 
@@ -78,19 +82,12 @@ const CustomOrder = ({ order }) => {
     }
   };
 
-  /*const handleProductSelection = (productId) => {
-    setSelectedProducts((prevSelectedProducts) =>
-      prevSelectedProducts.includes(productId)
-        ? prevSelectedProducts.filter((id) => id !== productId)
-        : [...prevSelectedProducts, productId]
-    );
-  };*/
   const handleProductSelection = (productId, quantity = 1) => {
-    // Default quantity to 1 if not provided
     setSelectedProducts((prevSelectedProducts) => {
       const productExists = prevSelectedProducts.find(
         (p) => p.product === productId
       );
+
       if (productExists) {
         return prevSelectedProducts.filter((p) => p.product !== productId);
       } else {
@@ -133,18 +130,6 @@ const CustomOrder = ({ order }) => {
               </div>
             </div>
 
-            {/*<div className="list__products">
-            {products.map((product) => (
-              <label key={product._id}>
-                {product.name}
-                <input
-                  type="checkbox"
-                  checked={selectedProducts.includes(product._id)}
-                  onChange={() => handleProductSelection(product._id)}
-                />
-              </label>
-            ))}
-          </div>*/}
             <div className="list__products">
               <label>Products</label>
               <div className="list">
@@ -179,56 +164,3 @@ const CustomOrder = ({ order }) => {
 };
 
 export default CustomOrder;
-
-/*// ... (other imports and code)
-
-const CustomOrder = ({ order }) => {
-  // ... (other states and useEffects)
-
-  useEffect(() => {
-    if (order) {
-      setReference(order.reference);
-      setCustomer(order.customer);
-      setSelectedProducts(
-        order.products.map((p) => ({
-          product: p.product,
-          quantity: p.quantity // Assuming quantity is also passed in the order prop
-        }))
-      );
-    }
-  }, [order]);
-
-  // ... (other functions)
-
-  const handleProductSelection = (productId, quantity = 1) => { // Default quantity to 1 if not provided
-    setSelectedProducts((prevSelectedProducts) => {
-      const productExists = prevSelectedProducts.find(p => p.product === productId);
-      if (productExists) {
-        return prevSelectedProducts.filter(p => p.product !== productId);
-      } else {
-        return [...prevSelectedProducts, { product: productId, quantity }];
-      }
-    });
-  };
-
-  // ... (render method and return statement)
-
-  // Corrected checked property for product selection inputs
-  <div className="list__products">
-    {products.map((product) => (
-      <label key={product._id}>
-        {product.name}
-        <input
-          type="checkbox"
-          checked={selectedProducts.some(p => p.product === product._id)}
-          onChange={() => handleProductSelection(product._id)}
-        />
-      </label>
-    ))}
-  </div>
-
-  // ... (rest of the form and component)
-};
-
-export default CustomOrder;
-*/

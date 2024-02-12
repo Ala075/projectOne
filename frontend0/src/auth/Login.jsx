@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Cookie from "cookie-universal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import img from "../assets/arbre.jpg";
+import img from "../assets/img_3d_food_icon_by_199x210.png";
 import "./auth.css";
 import InputsForm from "../components/InputsForm";
 import axios from "axios";
@@ -97,7 +97,7 @@ const Login = () => {
                     Submit
                   </button>
                   <p>
-                    You don't have account,{" "}
+                    You don t have account,{" "}
                     <span onClick={handleSign}>Sign-Up</span>
                   </p>
 

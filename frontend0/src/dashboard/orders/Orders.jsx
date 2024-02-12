@@ -20,6 +20,7 @@ const Orders = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log("Fetching orders");
       setLoading(true);
       try {
         const ordersRes = await Axios.get("/Orders");
@@ -41,7 +42,7 @@ const Orders = () => {
       } catch (error) {
         setError(true);
         showError(
-          error.response?.data?.message || "An unexpected error occurred"
+          error.response?.data.message || "An unexpected error occurred"
         );
       } finally {
         setLoading(false);

@@ -20,6 +20,8 @@ import Category from "./components/categories/Category";
 import Product from "./components/products/Product";
 import Order from "./dashboard/orders/Order";
 import Sales from "./dashboard/sales/Sales";
+import Basket from "./pages/Basket";
+import ProductInfo from "./components/products/ProductInfo";
 
 //import './App.css'
 
@@ -27,7 +29,10 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Landing />} exact />
+      <Route path="/basket" element={<Basket />} />
+      <Route path="/Product/:id" element={<ProductInfo />} />
       <Route path="/*" element={<ErrorPage />} />
+
       <Route element={<PreventAuth />}>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
