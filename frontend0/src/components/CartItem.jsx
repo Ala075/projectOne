@@ -1,5 +1,6 @@
 import { Plus, Minus, Trash2 } from "lucide-react";
 import styled from "styled-components";
+import { IMAGE_URL } from "../api/Config";
 
 const Row = styled.div`
   display: flex;
@@ -13,8 +14,8 @@ const ImgContainer = styled.div`
   height: 140px;
   width: 140px;
   border: 1px solid #eee;
-  border-radius: 5px;
   margin-right: 10px;
+  border-radius: 5px;
 `;
 
 const Description = styled.div`
@@ -53,16 +54,17 @@ const Container = styled.div`
 const Img = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  border-radius: 5px;
+  object-fit: cover;
 `;
 
 function CartItem({ product, update }) {
-  const { _id, image, name, price, Qte } = product;
+  const { _id, images, name, price, Qte } = product;
 
   return (
     <Row>
       <ImgContainer>
-        <Img src={image} alt={name} />
+        <Img src={IMAGE_URL + images[0]} alt={name} />
       </ImgContainer>
       <Description>
         <p>{name}</p>

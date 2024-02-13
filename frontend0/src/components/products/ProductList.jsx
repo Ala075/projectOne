@@ -7,6 +7,7 @@ import { Eye, ShoppingBasket } from "lucide-react";
 import { BasketContext } from "../../Context+Reducer/BasketContext";
 import Loading from "../Loading";
 import { useNavigate } from "react-router-dom";
+import { IMAGE_URL } from "../../api/Config";
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);
@@ -55,7 +56,7 @@ const ProductList = () => {
             {products.map((product) => (
               <div className="products__item" key={product._id}>
                 <div className="products__item__image">
-                  <img src={product.images[0].image} alt={product.name} />
+                  <img src={IMAGE_URL + product.images[2]} alt={product.name} />
                 </div>
                 <div className="products__item__name">
                   <span>{product.name}</span>

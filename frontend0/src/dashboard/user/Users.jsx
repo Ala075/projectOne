@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { defineRole } from "../../components/DefineRole";
 import Table from "../../components/table/Table";
 import ErrorPage from "../../pages/ErrorPage";
+import DashboardTitle from "../../components/DashboardTitle";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -80,20 +81,7 @@ const Users = () => {
         <ErrorPage />
       ) : (
         <>
-          <div
-            style={{
-              width: "100%",
-              padding: "1rem .5rem",
-              display: "flex",
-              justifyContent: "space-between",
-              backgroundColor: "#242424",
-            }}
-          >
-            <p>All Users:</p>
-            <button style={{padding:".5rem", backgroundColor:"gray", outline:"none", border:"none"}} onClick={addUser}>
-              Add User
-            </button>
-          </div>
+          <DashboardTitle title="Users" addMethod={addUser} />
           <Table
             data={updatedArray}
             headers={headers}

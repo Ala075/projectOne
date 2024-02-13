@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./products.css";
 import { PencilRuler, Trash2 } from "lucide-react";
+import DashboardTitle from "../DashboardTitle";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -55,50 +56,47 @@ const Products = () => {
   };
 
   return (
-    <div className="products">
+    <>
       <ToastContainer position="bottom-center" autoClose={5000} />
       {loading ? (
         <Loading />
       ) : (
         <>
-          <div className="products__header">
-            <h2>Products</h2>
-            <button className="btn btn--primary" onClick={addProduct}>
-              Add Product
-            </button>
-          </div>
-          <div className="products__list">
-            {products.map((product) => (
-              <div className="products__item" key={product._id}>
-                <div className="products__item__image">
-                  <img src={product.image} alt={product.name} />
+          <DashboardTitle title={Products} addMethod={addProduct} />
+          <div className="products">
+            <div className="products__list">
+              {products.map((product) => (
+                <div className="products__item" key={product._id}>
+                  <div className="products__item__image">
+                    <img src={product.image} alt={product.name} />
+                  </div>
+                  <div className="products__item__name">
+                    <span>{product.name}</span>
+                  </div>
+                  <div className="products__item__description">
+                    <span>{product.description}</span>
+                  </div>
+                  <div className="products__item__actions">
+                    <button
+                      className="btn btn--icon"
+                      onClick={() => editProduct(product)}
+                    >
+                      <PencilRuler />
+                    </button>
+                    <button
+                      className="btn btn--icon"
+                      onClick={() => deleteProduct(product._id)}
+                    >
+                      <Trash2 />
+                    </button>
+                  </div>
                 </div>
-                <div className="products__item__name">
-                  <span>{product.name}</span>
-                </div>
-                <div className="products__item__description">
-                  <span>{product.description}</span>
-                </div>
-                <div className="products__item__actions">
-                  <button
-                    className="btn btn--icon"
-                    onClick={() => editProduct(product)}
-                  >
-                    <PencilRuler />
-                  </button>
-                  <button
-                    className="btn btn--icon"
-                    onClick={() => deleteProduct(product._id)}
-                  >
-                    <Trash2 />
-                  </button>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </>
       )}
-    </div>
+    </>
   );
 };
 

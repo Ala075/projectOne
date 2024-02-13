@@ -6,11 +6,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./categories.css";
 import { PencilRuler, Trash2 } from "lucide-react";
+import DashboardTitle from "../DashboardTitle";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
   const navigate = useNavigate();
 
   const showError = (message) => {
@@ -27,7 +27,6 @@ const Categories = () => {
         setCategories(res.data.categories);
         console.log(res.data.categories)
       } catch (error) {
-        setError(true);
         showError(error.response?.data.message);
       } finally {
         setLoading(false);
@@ -64,31 +63,11 @@ const Categories = () => {
   return (
     <>
       <ToastContainer position="bottom-center" autoClose={5000} />
-      <div
-        style={{
-          width: "100%",
-          padding: "1rem .5rem",
-          display: "flex",
-          justifyContent: "space-between",
-          backgroundColor: "#242424",
-        }}
-      >
-        <p>All Categories:</p>
-        <button
-          style={{
-            padding: ".5rem",
-            backgroundColor: "gray",
-            outline: "none",
-            border: "none",
-          }}
-          onClick={addCategory}
-        >
-          Add Category
-        </button>
-      </div>
       {loading ? (
         <Loading />
       ) : (
+        <>
+        <DashboardTitle title="Categories" addMethod={addCategory} />
         <div className="categories">
           <div className="categories__container">
             <div className="categories__container__title">
@@ -124,6 +103,7 @@ const Categories = () => {
             </div>
           </div>
         </div>
+        </>
       )}
     </>
   );

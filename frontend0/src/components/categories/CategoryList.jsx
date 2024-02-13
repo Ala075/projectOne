@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { Axios } from "../../api/Axios";
 import Loading from "../Loading";
 import "react-toastify/dist/ReactToastify.css";
-import "./categories.css";
 import { toast } from "react-toastify";
 import "./categories.css";
+import { IMAGE_URL } from "../../api/Config";
 
 const CategoryList = () => {
   const [categories, setCategories] = useState([]);
@@ -20,6 +20,8 @@ const CategoryList = () => {
       setLoading(true);
       try {
         const res = await Axios.get("/Categories");
+
+        console.log(res.data.categories);
 
         setCategories(res.data.categories);
       } catch (error) {
@@ -42,7 +44,7 @@ const CategoryList = () => {
             categories.map((category, index) => (
               <div className="categories__container__content__item" key={index}>
                 <div className="item__img">
-                  <img src={category.image} alt={category.name} />
+                  <img src={IMAGE_URL + category.image} alt={category.name} />
                 </div>
                 <h2 className="item__title">{category.name}</h2>
                 <p className="item__description">{category.description}</p>

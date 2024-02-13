@@ -109,9 +109,11 @@ const Header = () => {
             </div>
             <div>
               {!token ? (
-                <Link to="/signup">
-                  <span>Get Started</span>
-                </Link>
+                <button>
+                  <Link to="/signup">
+                    <span>Get Started</span>
+                  </Link>
+                </button>
               ) : (
                 <div className="header__avatar" onClick={handleProfil}>
                   <img
@@ -120,9 +122,12 @@ const Header = () => {
                       height: "40px",
                       width: "40px",
                       objectFit: "cover",
-                      border:"1px solid #eee",
+                      border: "1px solid #eee",
                     }}
-                    src={profileImage || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"}
+                    src={
+                      profileImage ||
+                      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                    }
                     alt="avatar"
                   />
                 </div>

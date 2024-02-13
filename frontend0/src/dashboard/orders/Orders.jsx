@@ -3,15 +3,14 @@ import "./orders.css";
 import Table from "../../components/table/Table";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading";
-import ErrorPage from "../../pages/ErrorPage";
 import { Axios } from "../../api/Axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import DashboardTitle from "../../components/DashboardTitle";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
   const navigate = useNavigate();
 
   const showError = (message) => {
@@ -40,7 +39,6 @@ const Orders = () => {
 
         setOrders(fetchedOrders);
       } catch (error) {
-        setError(true);
         showError(
           error.response?.data.message || "An unexpected error occurred"
         );
@@ -50,7 +48,7 @@ const Orders = () => {
     };
 
     fetchData();
-  }, []); 
+  }, []);
 
   const headers = ["reference", "customer", "products", "status", "total"];
 
@@ -80,22 +78,15 @@ const Orders = () => {
           {loading ? (
             <Loading />
           ) : (
-            <div className="orders__list">
-              <div className="orders__listHeader">
-                <h3>Orders</h3>
-                <button className="btn btn--primary" onClick={addOrder}>
-                  Add Order
-                </button>
-              </div>
-              <div className="orders__listContent">
-                <Table
-                  headers={headers}
-                  data={orders}
-                  edit={editOrder}
-                  deleteFn={deleteOrder}
-                />
-              </div>
-            </div>
+            <>
+              <DashboardTitle title="Orders" addMethod={addOrder} />
+              <Table
+                headers={headers}
+                data={orders}
+                edit={editOrder}
+                deleteFn={deleteOrder}
+              />
+            </>
           )}
         </div>
       </div>
