@@ -9,51 +9,56 @@ import Loading from "../Loading";
 import { useNavigate } from "react-router-dom";
 import { IMAGE_URL } from "../../api/Config";
 
-const ProductList = () => {
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const { addToBasket } = useContext(BasketContext);
+const ProductList = ({ ProductList }) => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const { addToBasket } = useContext(BasketContext);
 
-    const navigate = useNavigate();
-  
-    const showError = (message) => {
-      toast.error(message);
-    };
-  
-    // Récupérer les products
-    useEffect(() => {
-      const fetchData = async () => {
-        setLoading(true);
-        try {
-          const res = await Axios.get("/Products");
-  
-          setProducts(res.data.products);
-        } catch (error) {
-          showError(error.response.data.message);
-        } finally {
-          setLoading(false);
-        }
-      };
-  
-      fetchData();
-    }, []);
-  
-    const handleBasket = (product) => () => {
-      const productExist = products.find((p) => p._id === product._id);
-      if (!productExist) {
-        product = { ...product, quantity: 1 };
+  const navigate = useNavigate();
+
+  const showError = (message) => {
+    toast.error(message);
+  };
+
+  // Récupérer les products
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const res = await Axios.get("/Products");
+
+        setProducts(res.data.products);
+      } catch (error) {
+        showError(error.response.data.message);
+      } finally {
+        setLoading(false);
       }
-      addToBasket(product);
+    };
+
+    if (!ProductList) {
+      fetchData();
+    } else {
+      setProducts(ProductList);
     }
+  }, [ProductList]);
+
+  const handleBasket = (product) => () => {
+    const productExist = products.find((p) => p._id === product._id);
+    if (!productExist) {
+      product = { ...product, quantity: 1 };
+    }
+    addToBasket(product);
+  };
 
   return (
-    <div className="products" >
+    <div className="products">
       <ToastContainer position="bottom-center" autoClose={5000} />
       {loading ? (
         <Loading />
       ) : (
-    <div className="products__list">
-            {products.map((product) => (
+        <div className="products__list">
+          {products &&
+            products.map((product) => (
               <div className="products__item" key={product._id}>
                 <div className="products__item__image">
                   <img src={IMAGE_URL + product.images[2]} alt={product.name} />
@@ -80,10 +85,10 @@ const ProductList = () => {
                 </div>
               </div>
             ))}
-          </div>
+        </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default ProductList
+export default ProductList;

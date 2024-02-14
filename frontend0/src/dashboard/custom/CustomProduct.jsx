@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import InputsForm from "../../components/InputsForm";
-import axios from "axios";
-import { BASE_URL } from "../../api/Config";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../../src/auth/auth.css";
@@ -10,7 +8,6 @@ import "./custom.css";
 import { Axios } from "../../api/Axios";
 
 const CustomProduct = ({ product }) => {
-  const [reference, setReference] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [images, setImages] = useState("");
@@ -19,7 +16,6 @@ const CustomProduct = ({ product }) => {
   const [price, setPrice] = useState(0);
 
   const [error, setError] = useState({
-    reference: "* Invalid reference !",
     name: "* Ivalid name !",
     description: "* Invalid description !",
     price: "* Invalid price !",
@@ -44,7 +40,6 @@ const CustomProduct = ({ product }) => {
     }*/
 
     const form = new FormData();
-    form.append("reference", reference);
     form.append("name", name);
     form.append("description", description);
     form.append("price", price);
@@ -62,14 +57,7 @@ const CustomProduct = ({ product }) => {
           navigate("/dashboard/Products");
         }
       } else {
-        const res = await Axios.patch(`/Products/${product._id}`, {
-          reference,
-          name,
-          description,
-          images,
-          price,
-          category,
-        });
+        const res = await Axios.patch(`/Products/${product._id}`, form);
 
         if (res.status === 200) {
           toast.success("Product updated successfully !");
@@ -127,19 +115,11 @@ const CustomProduct = ({ product }) => {
               <option value="">Select a category</option>
               {categories &&
                 categories.map((category, index) => (
-                  <option value={category._id} key={index}>
+                  <option value={category.name} key={index}>
                     {category.name}
                   </option>
                 ))}
             </select>
-            <InputsForm
-              name="Reference"
-              type="text"
-              placeholder="Enter a reference"
-              value={reference}
-              error={error.reference}
-              setChange={setReference}
-            />
             <InputsForm
               name="Name"
               type="text"

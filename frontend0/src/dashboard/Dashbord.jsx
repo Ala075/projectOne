@@ -67,7 +67,7 @@ const Dashbord = () => {
         <main className="main">
           <nav className="sidebar">
             <div className="header">
-              <img src="../assets/logo.png" alt="logo" />
+              <img src="../../src/assets/pngegg.png" alt="logo" />
             </div>
 
             <div className="links">
@@ -76,7 +76,7 @@ const Dashbord = () => {
                 <span>Dashboard</span>
               </Link>
 
-              <Link to="" className="link" onClick={handleFocus}>
+              <Link to="restaurants" className="link" onClick={handleFocus}>
                 <Home className="icon" />
                 <span>Restaurant</span>
               </Link>

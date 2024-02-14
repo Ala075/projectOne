@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./products.css";
 import { PencilRuler, Trash2 } from "lucide-react";
 import DashboardTitle from "../DashboardTitle";
+import { IMAGE_URL } from "../../api/Config";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -68,7 +69,7 @@ const Products = () => {
               {products.map((product) => (
                 <div className="products__item" key={product._id}>
                   <div className="products__item__image">
-                    <img src={product.image} alt={product.name} />
+                    <img src={IMAGE_URL + product.images[0]} alt={product.name} />
                   </div>
                   <div className="products__item__name">
                     <span>{product.name}</span>

@@ -40,8 +40,6 @@ const CustomCategory = ({ category }) => {
     form.append("description", description);
     form.append("image", image);
 
-    console.log(form)
-
     try {
       if (!category) {
         console.log("form", form);

@@ -22,6 +22,8 @@ import Order from "./dashboard/orders/Order";
 import Sales from "./dashboard/sales/Sales";
 import Basket from "./pages/Basket";
 import ProductInfo from "./components/products/ProductInfo";
+import MainDashboard from "./dashboard/MainDashboard";
+import Restaurant from "./pages/Restaurant";
 
 //import './App.css'
 
@@ -42,6 +44,10 @@ function App() {
 
       <Route element={<RequireAuth allowedRole={[4000, 5000, 7000, 9000]} />}>
         <Route path="/Dashboard" element={<Dashbord />}>
+
+          <Route path="" element={<MainDashboard />} />
+          <Route path="restaurants" element={<Restaurant />} />
+
           {/* Protect Route Admin Only */}
           <Route element={<RequireAuth allowedRole={[7000, 9000]} />}>
             <Route path="Users" element={<Users />} />

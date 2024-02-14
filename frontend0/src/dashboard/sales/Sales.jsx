@@ -36,6 +36,7 @@ const Sales = () => {
       setLoading(true);
       try {
         const ordersRes = await Axios.get("/Orders"); // Endpoint should be lowercase
+
         setOrders(ordersRes.data.orders);
         setError(false);
       } catch (err) {
@@ -47,9 +48,8 @@ const Sales = () => {
         setLoading(false);
       }
     };
-
     fetchOrders();
-  }, []);
+  });
 
   // Create sales for expired orders
   useEffect(() => {
@@ -62,7 +62,7 @@ const Sales = () => {
             const res = await Axios.post("/Sales", {
               // Endpoint should be lowercase
               order: order._id,
-              total: order.total+1,
+              total: order.total + 1,
             });
             if (res.status === 201) {
               setSales((prevSales) => [...prevSales, res.data.sale]);
@@ -75,12 +75,9 @@ const Sales = () => {
         }
       }
     };
-
-
-      // Prevent duplicate sales creation
-      createSalesForExpiredOrders();
-
-  }, []); 
+    // Prevent duplicate sales creation
+    createSalesForExpiredOrders();
+  }, []);
 
   // Display loading or error state
   if (loading) return <p>Loading...</p>;

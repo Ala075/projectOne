@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./categories.css";
 import { PencilRuler, Trash2 } from "lucide-react";
 import DashboardTitle from "../DashboardTitle";
+import { IMAGE_URL } from "../../api/Config";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
@@ -25,7 +26,7 @@ const Categories = () => {
         const res = await Axios.get("/Categories");
 
         setCategories(res.data.categories);
-        console.log(res.data.categories)
+        console.log(res.data.categories);
       } catch (error) {
         showError(error.response?.data.message);
       } finally {
@@ -38,14 +39,14 @@ const Categories = () => {
 
   // Mettre à jour le tableau des catégories
   const editCategory = (category) => {
-    console.log("category", category);  
+    console.log("category", category);
     navigate(`/dashboard/Categories/${category._id}`);
   };
 
   const deleteCategory = async (id) => {
     try {
       await Axios.delete(`/Categories/${id}`);
-      
+
       const newCategories = categories.filter(
         (category) => category._id !== id
       );
@@ -67,42 +68,47 @@ const Categories = () => {
         <Loading />
       ) : (
         <>
-        <DashboardTitle title="Categories" addMethod={addCategory} />
-        <div className="categories">
-          <div className="categories__container">
-            <div className="categories__container__title">
-              <h1>Categories</h1>
-            </div>
-            <div className="categories__container__content">
-              {categories.length > 0 ? (
-                categories.map((category, index) => (
-                  <div
-                    className="categories__container__content__item"
-                    key={index}
-                  >
-                    <div className="item__img">
-                      <img src={category.image} alt={category.name} />
+          <DashboardTitle title="Categories" addMethod={addCategory} />
+          <div className="categories">
+            <div className="categories__container">
+              <div className="categories__container__title">
+                <h1>Categories</h1>
+              </div>
+              <div className="categories__container__content">
+                {categories.length > 0 ? (
+                  categories.map((category, index) => (
+                    <div
+                      className="categories__container__content__item"
+                      key={index}
+                    >
+                      <div className="item__img">
+                        <img
+                          src={IMAGE_URL + category.image}
+                          alt={category.name}
+                        />
+                      </div>
+                      <h2 className="item__title">{category.name}</h2>
+                      <p className="item__description">
+                        {category.description}
+                      </p>
+                      <div className="item__btns">
+                        <PencilRuler
+                          className="btn btn__edit"
+                          onClick={() => editCategory(category)}
+                        />
+                        <Trash2
+                          className="btn btn__delete"
+                          onClick={() => deleteCategory(category._id)}
+                        />
+                      </div>
                     </div>
-                    <h2 className="item__title">{category.name}</h2>
-                    <p className="item__description">{category.description}</p>
-                    <div className="item__btns">
-                      <PencilRuler
-                        className="btn btn__edit"
-                        onClick={() => editCategory(category)}
-                      />
-                      <Trash2
-                        className="btn btn__delete"
-                        onClick={() => deleteCategory(category._id)}
-                      />
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <p>No categories</p>
-              )}
+                  ))
+                ) : (
+                  <p>No categories</p>
+                )}
+              </div>
             </div>
           </div>
-        </div>
         </>
       )}
     </>

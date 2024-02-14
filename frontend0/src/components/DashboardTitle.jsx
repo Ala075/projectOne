@@ -25,7 +25,7 @@ const DashboardTitle = ({ title, addMethod }) => {
         }}
         onClick={addMethod}
       >
-        Add User
+        Add {title}
       </button>
     </div>
   );
