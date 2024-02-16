@@ -66,7 +66,7 @@ const Dashbord = () => {
       <div className="dashboard">
         <main className="main">
           <nav className="sidebar">
-            <div className="header">
+            <div className="header_sidebar">
               <img src="../../src/assets/pngegg.png" alt="logo" />
             </div>
 
@@ -140,7 +140,7 @@ const Dashbord = () => {
                       IMAGE_URL + user.image ||
                       "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
                     }
-                    alt={user.name}
+                    alt="avatar"
                   />
                 </div>
               </div>

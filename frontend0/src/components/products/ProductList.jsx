@@ -29,7 +29,7 @@ const ProductList = ({ ProductList }) => {
 
         setProducts(res.data.products);
       } catch (error) {
-        showError(error.response.data.message);
+        showError(error.response?.data.message);
       } finally {
         setLoading(false);
       }
@@ -61,7 +61,7 @@ const ProductList = ({ ProductList }) => {
             products.map((product) => (
               <div className="products__item" key={product._id}>
                 <div className="products__item__image">
-                  <img src={IMAGE_URL + product.images[2]} alt={product.name} />
+                  <img src={IMAGE_URL + product.images[0]} alt={product.name} />
                 </div>
                 <div className="products__item__name">
                   <span>{product.name}</span>

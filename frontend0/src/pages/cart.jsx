@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import CartItem from "../components/CartItem";
+import Axios from "../api/Axios";
 
 const CartContainer = styled.div`
   padding: 80px;
@@ -23,7 +24,9 @@ const Message = styled.p`
 `;
 
 function Cart() {
-  const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem("cart")) || []);
+  const [cartItems, setCartItems] = useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
 
   const updateCart = (productId, quantity) => {
     setCartItems((prev) => {
@@ -40,7 +43,22 @@ function Cart() {
     });
   };
 
-  const sum = cartItems.reduce((acc, product) => acc + product.price * product.Qte, 0).toFixed(3);
+  useEffect(() => {
+    const fetchCart = async () => {
+      try {
+        const response = await Axios.get("/api/cart/:userId"); // Replace :userId with the actual user ID
+        setCartItems(response.data.cart.items);
+      } catch (error) {
+        console.error("Error fetching cart:", error);
+      }
+    };
+
+    fetchCart();
+  }, []);
+
+  const sum = cartItems
+    .reduce((acc, product) => acc + product.price * product.Qte, 0)
+    .toFixed(3);
 
   return (
     <CartContainer>
@@ -52,7 +70,6 @@ function Cart() {
               <CartItem key={index} product={product} updateCart={updateCart} />
             ))}
             <Message>{`Total: $ ${sum}`}</Message>
-            
           </>
         ) : (
           <Message>Cart Is Already Empty</Message>

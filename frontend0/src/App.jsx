@@ -23,7 +23,7 @@ import Sales from "./dashboard/sales/Sales";
 import Basket from "./pages/Basket";
 import ProductInfo from "./components/products/ProductInfo";
 import MainDashboard from "./dashboard/MainDashboard";
-import Restaurant from "./pages/Restaurant";
+import Restaurants from "./pages/Restaurants";
 
 //import './App.css'
 
@@ -46,7 +46,7 @@ function App() {
         <Route path="/Dashboard" element={<Dashbord />}>
 
           <Route path="" element={<MainDashboard />} />
-          <Route path="restaurants" element={<Restaurant />} />
+          <Route path="restaurants" element={<Restaurants />} />
 
           {/* Protect Route Admin Only */}
           <Route element={<RequireAuth allowedRole={[7000, 9000]} />}>

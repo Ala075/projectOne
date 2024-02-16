@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Axios } from "../api/Axios";
 import { IMAGE_URL } from "../api/Config";
+import { Link } from "react-router-dom";
+import Logout from "../auth/Logout";
 
 const MainDashboard = () => {
   const [categories, setCategories] = useState([]);
@@ -76,7 +78,7 @@ const MainDashboard = () => {
                 ))}
             </div>
           </div>
-                </div>
+        </div>
 
         <div className="categories__dashboard" style={{ color: "black" }}>
           <div className="container">
@@ -85,10 +87,20 @@ const MainDashboard = () => {
               {products &&
                 products.map((product) => (
                   <div className="products__item" key={product._id}>
-                    <div className="img">
-                      <img src={IMAGE_URL + product.image} alt="" />
+                    <div className="img__container">
+                      <div className="img">
+                        <img
+                          src={IMAGE_URL + product.images[0]}
+                          alt={product.name}
+                        />
+                      </div>
                     </div>
-                    <p className="products__item__name">{product.name}</p>
+                    <div className="item__details">
+                      <p className="products__item__name">{product.name}</p>
+                      <p className="products__item__price">
+                        {product.price} DT
+                      </p>
+                    </div>
                   </div>
                 ))}
             </div>
@@ -104,19 +116,23 @@ const MainDashboard = () => {
               <div className="img">
                 <img src="../../src/assets/Profile.svg" alt="" />
               </div>
-              <p>Profile</p>
+              <Link to="/Profil">
+                <p>Profile</p>
+              </Link>
             </div>
             <div className="profile__settings__item">
               <div className="img">
                 <img src="../../src/assets/Settings.svg" alt="" />
               </div>
-              <p>Settings</p>
+              <Link to="/settings">
+                <p>Settings</p>
+              </Link>
             </div>
             <div className="profile__settings__item">
               <div className="img">
                 <img src="../../src/assets/Logout.svg" alt="" />
               </div>
-              <p>Logout</p>
+              <Link to="/Logout"><Logout /></Link>
             </div>
           </div>
         </div>

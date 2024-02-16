@@ -1,5 +1,6 @@
 import { createContext, useReducer } from "react";
 import storeReducer, { initialState } from "./BasketReducer";
+import Proptypes from "prop-types";
 
 export const BasketContext = createContext();
 
@@ -68,6 +69,10 @@ export const BasketProvider = ({ children }) => {
     addToBasket,
     updateBasket,
     removeAll,
+  };
+
+  BasketProvider.propTypes = {
+    children: Proptypes.node,
   };
 
   return (

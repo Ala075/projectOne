@@ -43,7 +43,7 @@ const SignUp = () => {
 
   useEffect(() => {
     generateOTP();
-  });
+  }, []);
 
   const showError = (message) => {
     setInputError((prevError) => ({ ...prevError, message }));
@@ -151,10 +151,10 @@ const SignUp = () => {
                     <button
                       type="submit"
                       id="next"
-                      disabled={isLoading || otpLoading}
+                      disabled={isLoading || otpLoading }
                     >
-                      {isLoading || otpLoading
-                        ? "Creating account..."
+                      {otpLoading
+                        ? "..."
                         : isLastStep
                         ? "Submit"
                         : "Next"}

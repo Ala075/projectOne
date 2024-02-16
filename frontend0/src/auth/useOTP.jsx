@@ -14,7 +14,8 @@ const useOTP = () => {
                 method: "GET"
             });
 
-            if (!response.data.ok) {
+            if (!response.data.ok) {                
+                console.error(" OTP:", response.data);
                 setOTP(response.data.otp);
                 setIsLoading(false);
                 setOTPError(null);

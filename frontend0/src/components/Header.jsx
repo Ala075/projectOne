@@ -7,6 +7,7 @@ import { BasketContext } from "../Context+Reducer/BasketContext";
 import { useNavigate } from "react-router-dom";
 import { Axios } from "../api/Axios";
 import { toast } from "react-toastify";
+import { IMAGE_URL } from "../api/Config";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,9 +44,7 @@ const Header = () => {
           setIsStaff(true);
         }
         if (res.data.user.image) {
-          setProfileImage(
-            "http://localhost:3001/public/images/" + res.data.user.image
-          );
+          setProfileImage(IMAGE_URL + res.data.user.image);
         }
       } catch (error) {
         showError(error.response?.data?.message || "An error occurred");
