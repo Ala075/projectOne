@@ -3,7 +3,7 @@ import { useNavigate, Outlet } from "react-router-dom";
 import { Axios } from "../api/Axios";
 import Loading from "../components/Loading";
 import Cookie from "cookie-universal";
-import ErrorPage from "../pages/ErrorPage";
+import ErrorPage from "../pages/errorPage/ErrorPage";
 import axios from "axios";
 import { BASE_URL } from "../api/Config";
 

@@ -19,12 +19,12 @@ const ProductInfo = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const res = await Axios.get(`/products/${id}`);
+        const res = await Axios.get(`/items/${id}`);
 
         setImages(
-          res.data.product.images.filter((image) => image !== images[0])
+          res.data.itemMenu.images.filter((image) => image !== images[0])
         );
-        setProduct(res.data.product);
+        setProduct(res.data.itemMenu);
       } catch (error) {
         setError(error.response.data.message);
       } finally {
@@ -38,7 +38,7 @@ const ProductInfo = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await Axios.get("/Products?searchTerm=" + product.category+"&ignore="+product._id);
+        const res = await Axios.get("/Items?searchTerm=" + product.category+"&ignore="+product._id);
 
         setProducts(res.data.products);
       } catch (error) {

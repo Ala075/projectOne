@@ -1,7 +1,6 @@
 .categories {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   margin: 0 auto;
   width: 100%;
@@ -9,14 +8,17 @@
 .categories .categories__container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   width: 100%;
+  padding: 50px;
 }
 .categories .categories__container__title {
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: 700;
   margin-bottom: 20px;
+}
+.categories .categories__container__title span {
+  color: #f44336;
 }
 .categories .categories__container__content {
   display: flex;
@@ -44,7 +46,7 @@
 .categories .categories__container__content__item:hover {
   transform: scale(1.05);
 }
-.categories  .item__img {
+.categories .item__img {
   width: 100%;
   height: 50%;
 }
@@ -72,23 +74,53 @@
   align-items: center;
   justify-content: center;
   width: 30%;
-    height: 30%;
+  height: 30%;
   position: absolute;
   top: 0;
   right: 0;
 }
-.categories .item__btns .btn{
-    width: 40%;
-    height: 100%;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
+.categories .item__btns .btn {
+  width: 40%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
-.categories .item__btns .btn__edit{
-    color: #343d57;
+.categories .item__btns .btn__edit {
+  color: #343d57;
 }
 
-.categories .item__btns .btn__delete{
-    color: #f44336;
+.categories .item__btns .btn__delete {
+  color: #f44336;
+}
+.categories__container__content__item_list {
+  background-color: aquamarine;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.categories__container__content__item_list .item__img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.categories__container__content__item_list .item__img img {
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.categories__container__content__item_list::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  border-radius: 50%;
 }

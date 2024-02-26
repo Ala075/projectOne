@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import "./categories.css";
 import { IMAGE_URL } from "../../api/Config";
+import { useNavigate } from "react-router-dom";
 
 const CategoryList = () => {
   const [categories, setCategories] = useState([]);
@@ -13,6 +14,8 @@ const CategoryList = () => {
   const showError = (message) => {
     toast.error(message);
   };
+
+  const navigate = useNavigate();
 
   // Récupérer les catégories
   useEffect(() => {
@@ -34,6 +37,17 @@ const CategoryList = () => {
     fetchData();
   }, []);
 
+  const showRelatedItems = async (name) => {
+    console.log(name);
+    try {
+      const res = await Axios.get(`/Items?searchTerm=${name}`);
+      
+      navigate(`/products/${name}`, { state: { products: res.data.products } });
+    } catch (error) {
+      showError(error.response?.data.message);
+    }
+  };
+
   return (
     <>
       {loading ? (
@@ -42,12 +56,14 @@ const CategoryList = () => {
         <div className="categories__container__content">
           {categories.length > 0 ? (
             categories.map((category, index) => (
-              <div className="categories__container__content__item" key={index}>
+              <div
+                className="categories__container__content__item_list"
+                key={index}
+                onClick={() => showRelatedItems(category.name)}
+              >
                 <div className="item__img">
                   <img src={IMAGE_URL + category.image} alt={category.name} />
                 </div>
-                <h2 className="item__title">{category.name}</h2>
-                <p className="item__description">{category.description}</p>
               </div>
             ))
           ) : (

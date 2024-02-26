@@ -6,7 +6,7 @@ import RequireAuth from "./auth/RequireAuth";
 import PreventAuth from "./auth/PreventAuth";
 import Login from "./auth/Login";
 import SignUp from "./auth/SignUp";
-import ErrorPage from "./pages/ErrorPage";
+import ErrorPage from "./pages/errorPage/ErrorPage";
 import Users from "./dashboard/user/Users";
 import User from "./dashboard/user/User";
 import CustomUser from "./dashboard/custom/CustomUser";
@@ -24,6 +24,7 @@ import Basket from "./pages/Basket";
 import ProductInfo from "./components/products/ProductInfo";
 import MainDashboard from "./dashboard/MainDashboard";
 import Restaurants from "./pages/Restaurants";
+import ItemsMenu from "./components/itemMenu/ItemsMenu";
 
 //import './App.css'
 
@@ -59,6 +60,7 @@ function App() {
           <Route path="Orders" element={<Orders />} />
           <Route path="Categories" element={<Categories />} />
           <Route path="Products" element={<Products />} />
+          <Route path="ItemsMenu" element={<ItemsMenu />} />
 
           <Route path="Orders/Order" element={<CustomOrder />} />
           <Route path="Orders/:id" element={<Order />} />

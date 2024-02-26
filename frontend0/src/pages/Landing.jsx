@@ -1,12 +1,41 @@
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ProductList from "../components/products/ProductList.jsx";
 import "../components/products/products.css";
 import "../components/categories/categories.css";
 import CategoryList from "../components/categories/CategoryList.jsx";
+import { Axios } from "../api/Axios.jsx";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const Landing = () => {
+  const [products, setProducts] = useState([]);
+
+  const navigate = useNavigate();
+
+  const showError = (message) => {
+    toast.error(message);
+  };
+
+  // Récupérer les products
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await Axios.get("/Items");
+
+        setProducts(res.data.itemsMenu);
+        localStorage.setItem("productsList", JSON.stringify(res.data.itemsMenu));
+      } catch (error) {
+        showError(error.response?.data.message);
+      } finally {
+        //setLoading(false);
+      }
+    };
+
+      fetchData();
+  }, []);
+
   return (
     <>
       <Header />
@@ -40,18 +69,10 @@ const Landing = () => {
           style={{ backgroundColor: "#898989" }}
         >
           <div className="categories__container__title">
-            <h1>Categories</h1>
+            <h1>Our <span>best Delivred</span> Categories</h1>
           </div>
           <CategoryList />
         </div>
-      </div>
-
-      <div
-        className="products__container"
-        style={{ backgroundColor: "#898989", padding: "15px" }}
-      >
-        <h2 className="products__container__title">Products</h2>
-        <ProductList />
       </div>
 
       <Footer />

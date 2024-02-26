@@ -1,6 +1,7 @@
 import { Plus, Minus, Trash2 } from "lucide-react";
 import styled from "styled-components";
 import { IMAGE_URL } from "../api/Config";
+import PropTypes from "prop-types";
 
 const Row = styled.div`
   display: flex;
@@ -59,7 +60,12 @@ const Img = styled.img`
 `;
 
 function CartItem({ product, update }) {
-  const { _id, images, name, price, Qte } = product;
+  const { _id, images, name, price, quantity: Qte } = product;
+
+  CartItem.propTypes = {
+    product: PropTypes.object.isRequired,
+    update: PropTypes.func.isRequired,
+  };
 
   return (
     <Row>

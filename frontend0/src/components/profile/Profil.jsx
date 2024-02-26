@@ -55,7 +55,7 @@ const Profile = () => {
     }
   };
 
-  const handleFileChange = (event) => {
+  const handleFileChange = async (event) => {
     const file = event.target.files[0];
 
     const fileUrl = imageToUrl(file);
@@ -65,11 +65,7 @@ const Profile = () => {
     formData.append("image", file);
 
     try {
-      Axios.patch(`/Users/${userId}/image`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await Axios.patch(`/Users/${userId}/image`, formData);
 
       showSuccess("Image updated");
     } catch (error) {

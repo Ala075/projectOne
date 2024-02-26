@@ -102,9 +102,14 @@ const Dashbord = () => {
                 <span>Orders</span>
               </Link>
 
-              <Link to="Sales" className="link" onClick={handleFocus}>
+              {/*<Link to="Sales" className="link" onClick={handleFocus}>
                 <BadgeDollarSign className="icon" />
                 <span>Total Sales</span>
+              </Link>*/}
+
+              <Link to="ItemsMenu" className="link" onClick={handleFocus}>
+                <BadgeDollarSign className="icon" />
+                <span>ItemsMenu</span>
               </Link>
             </div>
             <div className="others">

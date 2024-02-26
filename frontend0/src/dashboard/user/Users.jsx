@@ -7,7 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { defineRole } from "../../components/DefineRole";
 import Table from "../../components/table/Table";
-import ErrorPage from "../../pages/ErrorPage";
+import ErrorPage from "../../pages/errorPage/ErrorPage";
 import DashboardTitle from "../../components/DashboardTitle";
 
 const Users = () => {

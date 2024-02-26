@@ -3,7 +3,7 @@ import { Axios } from "../../api/Axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loading from "../Loading";
-import ErrorPage from "../../pages/ErrorPage";
+import ErrorPage from "../../pages/errorPage/ErrorPage";
 import CustomCategory from "../../dashboard/custom/CustomCategory";
 import { useParams } from "react-router-dom";
 
